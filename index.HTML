@@ -43,6 +43,8 @@
             animation: fall linear infinite;
             text-shadow: 0 0 5px #ff007f, 0 0 10px #ff007f;
             will-change: transform, opacity;
+            /* En Safari, considera usar -webkit-transform si hay problemas con transform */
+            /* -webkit-transform: translateY(-100px) scale(0.5); */
         }
 
         .heart {
@@ -59,6 +61,8 @@
             0% {
                 transform: translateY(-100px) scale(0.5);
                 opacity: 0;
+                /* En Safari, considera usar -webkit-transform si hay problemas con transform */
+                /* -webkit-transform: translateY(-100px) scale(0.5); */
             }
             10% {
                 opacity: 0.8;
@@ -66,6 +70,8 @@
             100% {
                 transform: translateY(100vh) scale(1.2);
                 opacity: 0;
+                /* En Safari, considera usar -webkit-transform si hay problemas con transform */
+                /* -webkit-transform: translateY(100vh) scale(1.2); */
             }
         }
 
@@ -78,26 +84,30 @@
             border-radius: 20px;
             box-shadow: 0 0 30px rgba(255, 0, 127, 0.5);
             backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px); /* Prefijo para Safari */
             animation: fadeInScale 2s forwards;
-            max-width: 90%; /* Ajustado para móviles */
+            max-width: 90%;
             box-sizing: border-box;
             cursor: pointer;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            min-height: 400px;
+            min-height: auto;
         }
 
         @keyframes fadeInScale {
             from {
                 opacity: 0;
                 transform: scale(0.8);
+                /* En Safari, considera usar -webkit-transform si hay problemas con transform */
+                /* -webkit-transform: scale(0.8); */
             }
             to {
                 opacity: 1;
                 transform: scale(1);
+                /* En Safari, considera usar -webkit-transform si hay problemas con transform */
+                /* -webkit-transform: scale(1); */
             }
         }
 
@@ -137,35 +147,30 @@
             margin-top: 30px;
         }
 
-        /* MEDIA QUERIES PARA PANTALLAS PEQUEÑAS */
         @media (max-width: 768px) {
             .message-overlay {
-                padding: 20px 25px; /* Reducir padding */
-                min-height: auto; /* Permitir que el alto se ajuste al contenido */
+                padding: 20px 25px;
+                min-height: auto;
             }
             .message-overlay h1 {
-                font-size: 2em; /* Tamaño más pequeño para el título */
+                font-size: 2em;
                 margin-bottom: 10px;
             }
             .message-overlay p {
-                font-size: 1em; /* Tamaño más pequeño para el párrafo */
-                line-height: 1.6; /* Ajustar interlineado */
+                font-size: 1em;
+                line-height: 1.6;
                 margin-bottom: 15px;
             }
             .message-overlay .date-highlight,
             .message-overlay .signature {
-                font-size: 0.9em; /* Ajustar el tamaño de la fecha y la firma */
+                font-size: 0.9em;
             }
-
-            /* Ajustar tamaño de lluvia de corazones/texto para móviles */
             .heart {
-                font-size: 1em; /* Corazones un poco más pequeños */
+                font-size: 1em;
             }
             .te-amo {
-                font-size: 1.5em; /* "TE AMO" un poco más pequeño */
+                font-size: 1.5em;
             }
-
-            /* Ajustar botón de música y flecha */
             .music-control {
                 bottom: 15px;
                 left: 15px;
@@ -173,8 +178,8 @@
                 font-size: 0.8em;
             }
             .arrow-indicator {
-                bottom: 55px; /* Ajustar posición para apuntar al botón en móvil */
-                left: 40px; /* Ajustar posición horizontal */
+                bottom: 55px;
+                left: 40px;
                 border-left: 10px solid transparent;
                 border-right: 10px solid transparent;
                 border-top: 20px solid red;
@@ -185,10 +190,7 @@
                 width: 6px;
                 height: 25px;
             }
-             /* Ocultar la flecha si es demasiado pequeña o no necesaria en algunos móviles */
-            .arrow-indicator.hidden-on-mobile {
-                display: none;
-            }
+            /*.arrow-indicator.hidden-on-mobile { display: none; }*/
         }
 
         .music-control {
@@ -204,7 +206,7 @@
             z-index: 10;
             font-size: 0.9em;
             backdrop-filter: blur(3px);
-            -webkit-backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px); /* Prefijo para Safari */
             transition: background-color 0.3s ease;
         }
 
@@ -225,6 +227,8 @@
             animation: bounceArrow 1s infinite alternate;
             opacity: 1;
             transition: opacity 0.5s ease-out;
+            /* En Safari, considera usar -webkit-transform si hay problemas con transform */
+            /* -webkit-transform: translateY(0); */
         }
 
         .arrow-indicator::after {
@@ -243,8 +247,8 @@
         }
 
         @keyframes bounceArrow {
-            from { transform: translateY(0); }
-            to { transform: translateY(-10px); }
+            from { transform: translateY(0); /* -webkit-transform: translateY(0); */ }
+            to { transform: translateY(-10px); /* -webkit-transform: translateY(-10px); */ }
         }
 
         .image-slideshow-container {
@@ -259,21 +263,22 @@
             justify-content: center;
             align-items: center;
             background-color: rgba(0,0,0,0.5);
-            /* Asegúrate de que este contenedor sea responsive */
-            padding: 10px; /* Pequeño padding para que las imágenes no toquen los bordes */
+            padding: 10px;
             box-sizing: border-box;
         }
 
         .slideshow-image {
             position: absolute;
-            width: 90%; /* Más ancho para ocupar más espacio en móvil */
-            height: auto; /* Altura automática para mantener la proporción */
-            max-width: 90%; /* Ajuste el máximo para evitar imágenes gigantes */
-            max-height: 80vh; /* Limitar la altura máxima a un porcentaje de la altura de la vista */
-            object-fit: contain; /* Asegura que la imagen se vea completa sin recortarse */
+            width: 90%;
+            height: auto;
+            max-width: 90%;
+            max-height: 80vh;
+            object-fit: contain;
             opacity: 0;
             transition: opacity 1.2s ease-in-out, transform 1.2s ease-in-out, filter 1.2s ease-in-out;
             transform: scale(0.8) translateY(-50px);
+            /* En Safari, considera usar -webkit-transform si hay problemas con transform */
+            /* -webkit-transform: scale(0.8) translateY(-50px); */
             border-radius: 15px;
             box-shadow: 0 0 25px rgba(255,255,255,0.2), 0 0 50px rgba(255,0,127,0.4);
         }
@@ -281,48 +286,68 @@
         .slideshow-image.active {
             opacity: 1;
             transform: scale(1) translateY(0);
+            /* En Safari, considera usar -webkit-transform si hay problemas con transform */
+            /* -webkit-transform: scale(1) translateY(0); */
         }
 
-        /* Efectos de imagen (se mantienen igual, ya que son transformaciones) */
-        .slideshow-image.effect-1 { animation: explodeFadeIn 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards; }
+        /* Efectos de imagen */
+        .slideshow-image.effect-1 {
+            animation: explodeFadeIn 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+            /* En Safari, considera usar -webkit-animation si hay problemas */
+            /* -webkit-animation: explodeFadeIn 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards; */
+        }
         @keyframes explodeFadeIn {
-            0% { opacity: 0; transform: scale(0) rotate(0deg); filter: blur(10px); }
-            50% { opacity: 1; transform: scale(1.1) rotate(5deg); filter: blur(0px); }
-            100% { opacity: 1; transform: scale(1) rotate(0deg); }
+            0% { opacity: 0; transform: scale(0) rotate(0deg); filter: blur(10px); /* -webkit-transform: scale(0) rotate(0deg); */ }
+            50% { opacity: 1; transform: scale(1.1) rotate(5deg); filter: blur(0px); /* -webkit-transform: scale(1.1) rotate(5deg); */ }
+            100% { opacity: 1; transform: scale(1) rotate(0deg); /* -webkit-transform: scale(1) rotate(0deg); */ }
         }
 
         .slideshow-image.effect-2 {
             animation: magicDoor 1.8s ease-out forwards;
             transform-origin: left center;
+            /* En Safari, considera usar -webkit-animation y -webkit-transform-origin si hay problemas */
+            /* -webkit-animation: magicDoor 1.8s ease-out forwards; */
+            /* -webkit-transform-origin: left center; */
         }
         @keyframes magicDoor {
-            0% { opacity: 0; transform: perspective(1000px) rotateY(90deg) translateX(-100px); }
-            100% { opacity: 1; transform: perspective(1000px) rotateY(0deg) translateX(0); }
+            0% { opacity: 0; transform: perspective(1000px) rotateY(90deg) translateX(-100px); /* -webkit-transform: perspective(1000px) rotateY(90deg) translateX(-100px); */ }
+            100% { opacity: 1; transform: perspective(1000px) rotateY(0deg) translateX(0); /* -webkit-transform: perspective(1000px) rotateY(0deg) translateX(0); */ }
         }
 
-        .slideshow-image.effect-3 { animation: fallBounce 2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+        .slideshow-image.effect-3 {
+            animation: fallBounce 2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            /* En Safari, considera usar -webkit-animation si hay problemas */
+            /* -webkit-animation: fallBounce 2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; */
+        }
         @keyframes fallBounce {
-            0% { opacity: 0; transform: translateY(-200%) scale(0.5); }
-            60% { opacity: 1; transform: translateY(10%) scale(1.1); }
-            80% { transform: translateY(-5%) scale(0.95); }
-            100% { transform: translateY(0) scale(1); }
+            0% { opacity: 0; transform: translateY(-200%) scale(0.5); /* -webkit-transform: translateY(-200%) scale(0.5); */ }
+            60% { opacity: 1; transform: translateY(10%) scale(1.1); /* -webkit-transform: translateY(10%) scale(1.1); */ }
+            80% { transform: translateY(-5%) scale(0.95); /* -webkit-transform: translateY(-5%) scale(0.95); */ }
+            100% { transform: translateY(0) scale(1); /* -webkit-transform: translateY(0) scale(1); */ }
         }
 
-        .slideshow-image.effect-4 { animation: rippleReveal 2s ease-out forwards; }
+        .slideshow-image.effect-4 {
+            animation: rippleReveal 2s ease-out forwards;
+            /* En Safari, considera usar -webkit-animation si hay problemas */
+            /* -webkit-animation: rippleReveal 2s ease-out forwards; */
+        }
         @keyframes rippleReveal {
-            0% { opacity: 0; transform: scale(0.5); filter: brightness(0.5); }
-            50% { opacity: 0.8; transform: scale(1.05); filter: brightness(1.5); }
-            100% { opacity: 1; transform: scale(1); filter: brightness(1); }
+            0% { opacity: 0; transform: scale(0.5); filter: brightness(0.5); /* -webkit-transform: scale(0.5); */ }
+            50% { opacity: 0.8; transform: scale(1.05); filter: brightness(1.5); /* -webkit-transform: scale(1.05); */ }
+            100% { opacity: 1; transform: scale(1); filter: brightness(1); /* -webkit-transform: scale(1); */ }
         }
 
         .slideshow-image.effect-5 {
             animation: blurAndShine 2s ease-in-out forwards;
             filter: blur(15px) brightness(0.5);
+            /* En Safari, considera usar -webkit-animation si hay problemas */
+            /* -webkit-animation: blurAndShine 2s ease-in-out forwards; */
+            -webkit-filter: blur(15px) brightness(0.5); /* Prefijo para Safari */
         }
         @keyframes blurAndShine {
-            0% { opacity: 0; filter: blur(20px) brightness(0.2); transform: scale(0.9); }
-            50% { opacity: 0.7; filter: blur(5px) brightness(1.2); transform: scale(1.05); }
-            100% { opacity: 1; filter: blur(0) brightness(1); transform: scale(1); }
+            0% { opacity: 0; filter: blur(20px) brightness(0.2); transform: scale(0.9); /* -webkit-filter: blur(20px) brightness(0.2); -webkit-transform: scale(0.9); */ }
+            50% { opacity: 0.7; filter: blur(5px) brightness(1.2); transform: scale(1.05); /* -webkit-filter: blur(5px) brightness(1.2); -webkit-transform: scale(1.05); */ }
+            100% { opacity: 1; filter: blur(0) brightness(1); transform: scale(1); /* -webkit-filter: blur(0) brightness(1); -webkit-transform: scale(1); */ }
         }
 
         .message-overlay.hidden {
@@ -340,17 +365,19 @@
             z-index: 3;
             text-align: center;
             color: #ffffff;
-            font-size: 1.1em; /* Ajustado para móviles */
-            line-height: 1.6; /* Ajustado para móviles */
+            font-size: 1.1em;
+            line-height: 1.6;
             opacity: 0;
             animation: fadeIn 2s forwards;
+            /* En Safari, considera usar -webkit-animation si hay problemas */
+            /* -webkit-animation: fadeIn 2s forwards; */
             text-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff;
             padding: 20px;
             border-radius: 10px;
             background-color: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            max-width: 90%; /* Ajustado para móviles */
+            -webkit-backdrop-filter: blur(5px); /* Prefijo para Safari */
+            max-width: 90%;
             box-sizing: border-box;
             overflow-y: auto;
             max-height: 90vh;
@@ -454,7 +481,7 @@
 
         function typeWriter() {
             if (textIndex < elementsToType.length) {
-                const item = elementsToType[textIndex];
+                const item = elementsToType [textIndex];
                 let currentElement = item.element;
                 let currentText = item.text;
                 let charIndex = 0;
@@ -568,17 +595,16 @@
         const imagePaths = [
             '1.jpg',
             '2.jpg',
-            '3.jpg',
-            '4.jpg',
-            '5.jpg'
+            '4.jpg', // Ahora esta es la tercera imagen
+            '5.jpg'  // Ahora esta es la cuarta imagen
             // ¡Asegúrate de que estas imágenes existan en la misma carpeta!
         ];
         const effects = [
             'effect-1', // Explosión y Fade In
             'effect-2', // Puerta mágica
-            'effect-3', // Caída y rebote
-            'effect-4', // Ondulación y revelación
-            'effect-5'  // Desenfoque y brillo sorpresa
+            'effect-3', // Caída y rebote (aplicado a la imagen 4.jpg, que ahora es la tercera)
+            'effect-4', // Ondulación y revelación (aplicado a la imagen 5.jpg, que ahora es la cuarta)
+            'effect-5'  // Desenfoque y brillo sorpresa (Este efecto no se usará si solo hay 4 imágenes)
         ];
         let currentImageIndex = 0;
         let slideshowInterval;
@@ -588,61 +614,84 @@
             const allImages = imageSlideshow.querySelectorAll('.slideshow-image');
             allImages.forEach(img => {
                 img.style.opacity = 0;
-                img.style.animation = 'none';
-                void img.offsetWidth;
+                img.style.animation = 'none'; /* Reset animation */
+                void img.offsetWidth; /* Trigger reflow to apply reset */
                 img.classList.remove('active');
                 effects.forEach(effect => img.classList.remove(effect));
             });
 
-            // Si ya no quedan imágenes, muestra la letra y termina
-            if (currentImageIndex >= imagePaths.length) {
-                clearInterval(slideshowInterval); // Detiene el intervalo de las fotos
-                setTimeout(showLyrics, 1000); // Muestra la letra después de un breve retraso
-                return;
+            if (currentImageIndex < imagePaths.length) {
+                const img = document.createElement('img');
+                img.src = imagePaths[currentImageIndex];
+                img.classList.add('slideshow-image');
+                img.classList.add(effects[currentImageIndex % effects.length]); /* Apply effect cyclically */
+                imageSlideshow.appendChild(img);
+
+                // Forcing reflow for animation to restart (important for Safari sometimes)
+                void img.offsetWidth;
+
+                img.classList.add('active');
+                currentImageIndex++;
+            } else {
+                // Todas las imágenes mostradas, ahora mostramos la letra
+                clearInterval(slideshowInterval);
+                document.getElementById('imageSlideshow').style.display = 'none';
+                displayLyrics();
             }
-
-            let currentImageElement = allImages[currentImageIndex];
-            if (!currentImageElement) {
-                currentImageElement = document.createElement('img');
-                currentImageElement.classList.add('slideshow-image');
-                imageSlideshow.appendChild(currentImageElement);
-            }
-
-            currentImageElement.src = imagePaths[currentImageIndex];
-            currentImageElement.alt = `Momento ${currentImageIndex + 1}`;
-
-            const currentEffect = effects[currentImageIndex % effects.length];
-            currentImageElement.classList.add('active', currentEffect);
-
-            currentImageIndex++; // Incrementa para la próxima imagen
         }
 
         function startImageSlideshow() {
-            messageBox.classList.add('hidden');
-            imageSlideshow.style.display = 'flex';
-            showNextImage();
-            slideshowInterval = setInterval(showNextImage, imageDisplayDuration);
+            messageBox.classList.add('hidden'); // Oculta el mensaje
+            imageSlideshow.style.display = 'flex'; // Muestra el contenedor de imágenes
+            showNextImage(); // Muestra la primera imagen
+            slideshowInterval = setInterval(showNextImage, imageDisplayDuration); // Inicia el slideshow
         }
 
-        // --- Mostrar la Letra de la Canción ---
-        const lyricsContainer = document.getElementById('lyricsDisplay');
-        const songLyrics = `
-            <p>En cada latido de mi corazón, tu nombre resuena,</p>
-            <p>Eres la melodía que mi alma serena.</p>
-            <p>Tu sonrisa ilumina mis días oscuros,</p>
-            <p>En tus ojos encuentro mis sueños más puros.</p>
-            <p>...</p>
-            <p>Y así, mi amor, en este dulce compás,</p>
-            <p>Te entrego mi vida, mi eterno jamás.</p>
-            <p>Porque en ti encontré mi razón de ser,</p>
-            <p>Y SI TALVEZ FUE TARDE PERO LO SIENTO, PENSE QUE NO TE GUSTARIA.</p>
-              <p>TENGO OTRO REGALO TAMBINEN.......</p>
-            `;
+        // --- Letra de la Canción (JavaScript) ---
+        const lyricsDisplay = document.getElementById('lyricsDisplay');
+        const lyrics = [
+            "Eres el amor de mi vida,",
+            "Mi razón, mi melodía.",
+            "Cada día junto a ti es un sueño,",
+            "Un regalo, un bello empeño.",
+            "Feliz cumpleaños, mi amor,",
+              "PERDON POR LLEGAR TARDE PERO NO SABIA SI TE IBA GUSTAR,",
+            "Que seas feliz hoy y siempre, por favor."
+                 
+        ];
+        let currentLyricIndex = 0;
 
-        function showLyrics() {
-            imageSlideshow.style.display = 'none';
-            lyricsContainer.innerHTML = songLyrics;
-            lyricsContainer.style.display = 'block';
+        function displayLyrics() {
+            lyricsDisplay.style.display = 'flex'; // Mostrar el contenedor de la letra
+            lyricsDisplay.innerHTML = ''; // Limpiar cualquier contenido previo
+
+            let combinedLyrics = "";
+            lyrics.forEach((line, index) => {
+                combinedLyrics += `<span style="opacity: 0; display: block; animation: fadeInText 1s forwards ${index * 0.8}s;">${line}</span>`;
+            });
+            lyricsDisplay.innerHTML = combinedLyrics;
+
+            // Define la animación para el texto de la letra
+            const styleSheet = document.styleSheets[0];
+            styleSheet.insertRule(`
+                @keyframes fadeInText {
+                    from { opacity: 0; transform: translateY(20px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+            `, styleSheet.cssRules.length);
+             // Para Safari, si la animación no se activa, puedes intentar con -webkit-animation
+             // styleSheet.insertRule(`
+             //     @-webkit-keyframes fadeInText {
+             //         from { opacity: 0; -webkit-transform: translateY(20px); }
+             //         to { opacity: 1; -webkit-transform: translateY(0); }
+             //     }
+             // `, styleSheet.cssRules.length);
+
+            myAudio.play().catch(e => {
+                console.error("Error al reproducir el audio de la letra:", e);
+                // Si la reproducción falla aquí, es probable que se necesite una interacción del usuario.
+                // Puedes mostrar un botón "Reproducir música" si no lo has hecho ya.
+            });
         }
     </script>
 </body>
